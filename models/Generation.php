@@ -8,6 +8,7 @@
 		// Generation properties.
 		public $id;
 		public $value;
+		public $type;
 		public $length;
 		public $created_at;
 
@@ -17,32 +18,73 @@
 			$this->conn = $db;
 		}
 
-		public function generate($type)
+		public function generate()
 		{
-			$query = 'INSERT INTO ' . $this->table . ' SET value = :value';
+			$query = 'INSERT INTO ' . $this->table . ' SET value = :value,
+					type = :type,
+					length = :length;';
 
 			// Prepare statement.
 			$stmt = $this->conn->prepare($query);
 
 			// Clean data.
 			$this->value = htmlspecialchars(strip_tags($this->value));
+			$this->type = htmlspecialchars(strip_tags($this->type));
+			$this->length = htmlspecialchars(strip_tags($this->length));
 
-			if ($type == 'number')
+			// Bind data.
+			$stmt->bindParam(':type', $this->type);
+
+			if ($this->length <= 0)
+			{
+				return false;
+			}
+			
+			$stmt->bindParam(':length', $this->length);
+
+			if ($this->type == 'number')
+			{
+				$actualNumber = array();
+				array_push($actualNumber, 9);
+				
+				for ($i = 1; $i < $this->length; $i++)
+				{
+					array_push($actualNumber, 9);
+				}
+
+				// Bind data.
+				$stmt->bindParam(':value', mt_rand(-implode($actualNumber), implode($actualNumber)));
+
+				// Execute query.
+				if ($stmt->execute())
+				{
+					return true;
+				}
+
+				// Print error if something goes wrong.
+      			printf("Error: %s.\n", $stmt->error);
+
+				return false;
+			}
+
+			// When using alphanumeric type, legth specifies the length in bytes, not the length of the actual string.
+			else if ($this->type == 'alphanumeric')
 			{
 				// Bind data.
-				$stmt->bindParam(':value', mt_rand());
+				$stmt->bindParam(':value', bin2hex(random_bytes($this->length)));
+				
+
+				// Execute query.
+				if ($stmt->execute())
+				{
+					return true;
+				}
+
+				// Print error if something goes wrong.
+      			printf("Error: %s.\n", $stmt->error);
+
+				return false;
 			}
-
-			// Execute query.
-			if ($stmt->execute())
-			{
-				return true;
-			}
-
-			// Print error if something goes wrong.
-      		printf("Error: %s.\n", $stmt->error);
-
-			return false;
 		}
 
 		// Get generated value by its id.
