@@ -79,18 +79,64 @@
 			{
 				// Bind data.
 				$stmt->bindParam(':value', bin2hex(random_bytes($this->length)));
-				
 
 				// Execute query.
 				if ($stmt->execute())
 				{
 					// Return id.
-					$returnQuery = 'SELECT id FROM user ORDER BY id DESC LIMIT 1;';
+					$returnQuery = 'SELECT id FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1;';
 					$returnStmt = $this->conn->prepare($returnQuery);
 					$returnStmt->execute();
 					$row = $returnStmt->fetch(PDO::FETCH_ASSOC);
 					$this->id = $row['id'];
 
+					return true;
+				}
+
+				// Print error if something goes wrong.
+      			printf("Error: %s.\n", $stmt->error);
+
+				return false;
+			}
+			else if ($this->type == 'guid')
+			{
+				function getGUID()
+				{
+    				if (function_exists('com_create_guid'))
+   					{
+ 						return com_create_guid();
+    				}
+    				else
+    				{
+						mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
+        				$charid = strtoupper(md5(uniqid(rand(), true)));
+        				$hyphen = chr(45);// "-"
+        				$uuid = chr(123)// "{"
+            				.substr($charid, 0, 8).$hyphen
+            				.substr($charid, 8, 4).$hyphen
+            				.substr($charid,12, 4).$hyphen
+            				.substr($charid,16, 4).$hyphen
+            				.substr($charid,20,12)
+            				.chr(125);// "}"
+        				return $uuid;
+    				}
+				}
+
+				$myGUID = getGUID();
+
+				// Bind data.
+				$stmt->bindParam(':value', $myGUID);
+
+				// Execute query.
+				if ($stmt->execute())
+				{
+					// Return id.
+					$returnQuery = 'SELECT id FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1;';
+					$returnStmt = $this->conn->prepare($returnQuery);
+					$returnStmt->execute();
+					$row = $returnStmt->fetch(PDO::FETCH_ASSOC);
+					$this->id = $row['id'];
+					
 					return true;
 				}
 
