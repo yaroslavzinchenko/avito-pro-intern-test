@@ -15,5 +15,24 @@
 	// Instantiate generation object.
 	$generation = new generation($db);
 
-	$generation->generate();
+	// Get raw posted data.
+	$data = json_decode(file_get_contents("php://input"));
+
+	$generation->length = $data->length;
+
+	if ($generation->generate($data->length))
+	{
+		echo json_encode(
+			array(
+				'message' => 'Value Generated')
+		);
+	}
+	else
+	{
+		echo json_encode(
+			array(
+				'error code:' => http_response_code(),
+				'message' => 'Value Not Generated')
+		);
+	}
 ?>

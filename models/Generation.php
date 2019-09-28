@@ -8,6 +8,7 @@
 		// Generation properties.
 		public $id;
 		public $value;
+		public $length;
 		public $created_at;
 
 		// Constructor with DB.
@@ -16,7 +17,7 @@
 			$this->conn = $db;
 		}
 
-		public function generate()
+		public function generate($length)
 		{
 			$query = 'INSERT INTO ' . $this->table . ' SET value = :value';
 
@@ -27,7 +28,7 @@
 			$this->value = htmlspecialchars(strip_tags($this->value));
 
 			// Bind data.
-			$stmt->bindParam(':value', mt_rand());
+			$stmt->bindParam(':value', mt_rand($length, $length));
 
 			// Execute query.
 			if ($stmt->execute())
