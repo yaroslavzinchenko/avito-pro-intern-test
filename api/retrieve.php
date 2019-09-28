@@ -3,8 +3,8 @@
 	header('Access-Control-Allow-Origin: *');
 	header('Content-Type: application/json');
 
-	include_once '../config/Database.php';
-	include_once '../models/Generation.php';
+	require_once '../config/Database.php';
+	require_once '../models/Generation.php';
 
 	// Instantiate DB and Connect.
 	$database = new Database();
@@ -23,6 +23,8 @@
 	$generation_arr = array(
 		'id' => $generation->id,
 		'value' => $generation->value,
+		'type' => $generation->type,
+		'length' => $generation->length,
 		'created_at' => $generation->created_at
 	);
 

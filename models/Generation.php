@@ -20,30 +20,10 @@
 
 		public function generate()
 		{
-			$query = 'INSERT INTO ' . $this->table . ' SET value = :value,
-					type = :type,
-					length = :length;';
-
-			// Prepare statement.
-			$stmt = $this->conn->prepare($query);
-
-			// Clean data.
-			$this->value = htmlspecialchars(strip_tags($this->value));
-			$this->type = htmlspecialchars(strip_tags($this->type));
-			$this->length = htmlspecialchars(strip_tags($this->length));
-
-			if ($this->length <= 0)
-			{
-				return false;
-			}
-			
-			$stmt->bindParam(':length', $this->length);
-
-			// Bind data.
-			$stmt->bindParam(':type', $this->type);
-
 			if ($this->type == 'number')
 			{
+				require_once('../includes/consider-length.php');
+
 				$actualNumber = array();
 				array_push($actualNumber, 9);
 				
@@ -73,6 +53,8 @@
 			// When using alphanumeric type, legth specifies the length in bytes, not the length of the actual string.
 			else if ($this->type == 'alphanumeric')
 			{
+				require_once('../includes/consider-length.php');
+
 				// Bind data.
 				$stmt->bindParam(':value', bin2hex(random_bytes($this->length)));
 
@@ -92,6 +74,8 @@
 			}
 			else if ($this->type == 'guid')
 			{
+				require_once('../includes/not-consider-length.php');
+
 				function getGUID()
 				{
     				if (function_exists('com_create_guid'))
@@ -134,6 +118,8 @@
 			}
 			else if ($this->type == 'string')
 			{
+				require_once('../includes/consider-length.php');
+
 				function generateRandomString($length)
 				{
     				$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -165,6 +151,8 @@
 			}
 			else if ($this->type == 'custom')
 			{
+				require_once('../includes/consider-length.php');
+
 				function generateRandomString($length)
 				{
 					// Custom characters.
@@ -200,7 +188,7 @@
 		// Get generated value by its id.
 		public function retrieve()
 		{
-			$query = 'SELECT g.id, g.value, g.created_at
+			$query = 'SELECT g.id, g.value, g.type, g.length, g.created_at
 						FROM ' . $this->table . ' g 
 						WHERE g.id = ?
 						LIMIT 0,1';
@@ -219,6 +207,8 @@
 			// Set properties.
 			$this->id = $row['id'];
 			$this->value = $row['value'];
+			$this->type = $row['type'];
+			$this->length = $row['length'];
 			$this->created_at = $row['created_at'];
 		}
 	}
