@@ -32,15 +32,15 @@
 			$this->type = htmlspecialchars(strip_tags($this->type));
 			$this->length = htmlspecialchars(strip_tags($this->length));
 
-			// Bind data.
-			$stmt->bindParam(':type', $this->type);
-
 			if ($this->length <= 0)
 			{
 				return false;
 			}
 			
 			$stmt->bindParam(':length', $this->length);
+
+			// Bind data.
+			$stmt->bindParam(':type', $this->type);
 
 			if ($this->type == 'number')
 			{
@@ -59,11 +59,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					$returnQuery = 'SELECT id FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1;';
-					$returnStmt = $this->conn->prepare($returnQuery);
-					$returnStmt->execute();
-					$row = $returnStmt->fetch(PDO::FETCH_ASSOC);
-					$this->id = $row['id'];
+					require_once('../includes/return-id.php');
 
 					return true;
 				}
@@ -84,11 +80,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					$returnQuery = 'SELECT id FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1;';
-					$returnStmt = $this->conn->prepare($returnQuery);
-					$returnStmt->execute();
-					$row = $returnStmt->fetch(PDO::FETCH_ASSOC);
-					$this->id = $row['id'];
+					require_once('../includes/return-id.php');
 
 					return true;
 				}
@@ -130,13 +122,71 @@
 				// Execute query.
 				if ($stmt->execute())
 				{
+					require_once('../includes/return-id.php');
+
+					return true;
+				}
+
+				// Print error if something goes wrong.
+      			printf("Error: %s.\n", $stmt->error);
+
+				return false;
+			}
+			else if ($this->type == 'string')
+			{
+				function generateRandomString($length)
+				{
+    				$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    				$charactersLength = strlen($characters);
+    				$randomString = '';
+    				for ($i = 0; $i < $length; $i++)
+    				{
+        				$randomString .= $characters[rand(0, $charactersLength - 1)];
+    				}
+    				return $randomString;
+				}
+
+				// Bind data.
+				$stmt->bindParam(':value', generateRandomString($this->length));
+
+				// Execute query.
+				if ($stmt->execute())
+				{
 					// Return id.
-					$returnQuery = 'SELECT id FROM ' . $this->table . ' ORDER BY id DESC LIMIT 1;';
-					$returnStmt = $this->conn->prepare($returnQuery);
-					$returnStmt->execute();
-					$row = $returnStmt->fetch(PDO::FETCH_ASSOC);
-					$this->id = $row['id'];
-					
+					require_once('../includes/return-id.php');
+
+					return true;
+				}
+
+				// Print error if something goes wrong.
+      			printf("Error: %s.\n", $stmt->error);
+
+				return false;
+			}
+			else if ($this->type == 'custom')
+			{
+				function generateRandomString($length)
+				{
+					// Custom characters.
+    				$characters = '!<1Js93LdsdAS83';
+    				$charactersLength = strlen($characters);
+    				$randomString = '';
+    				for ($i = 0; $i < $length; $i++)
+    				{
+        				$randomString .= $characters[rand(0, $charactersLength - 1)];
+    				}
+    				return $randomString;
+				}
+
+				// Bind data.
+				$stmt->bindParam(':value', generateRandomString($this->length));
+
+				// Execute query.
+				if ($stmt->execute())
+				{
+					// Return id.
+					require_once('../includes/return-id.php');
+
 					return true;
 				}
 
