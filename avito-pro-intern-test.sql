@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 28 2019 г., 20:51
+-- Время создания: Сен 28 2019 г., 22:39
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.2
 
@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `generations` (
   `id` int(11) NOT NULL,
   `value` text NOT NULL,
-  `length` int(11) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `length` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,7 +54,7 @@ ALTER TABLE `generations`
 -- AUTO_INCREMENT для таблицы `generations`
 --
 ALTER TABLE `generations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
