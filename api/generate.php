@@ -25,6 +25,7 @@
 	{
 		echo json_encode(
 			array(
+				'id' => $generation->id,
 				'message' => 'Value Generated')
 		);
 	}
