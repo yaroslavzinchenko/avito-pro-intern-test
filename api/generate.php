@@ -18,9 +18,7 @@
 	// Get raw posted data.
 	$data = json_decode(file_get_contents("php://input"));
 
-	$generation->length = $data->length;
-
-	if ($generation->generate($data->length))
+	if ($generation->generate())
 	{
 		echo json_encode(
 			array(

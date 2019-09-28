@@ -17,7 +17,7 @@
 			$this->conn = $db;
 		}
 
-		public function generate($length)
+		public function generate($type)
 		{
 			$query = 'INSERT INTO ' . $this->table . ' SET value = :value';
 
@@ -27,8 +27,11 @@
 			// Clean data.
 			$this->value = htmlspecialchars(strip_tags($this->value));
 
-			// Bind data.
-			$stmt->bindParam(':value', mt_rand($length, $length));
+			if ($type == 'number')
+			{
+				// Bind data.
+				$stmt->bindParam(':value', mt_rand());
+			}
 
 			// Execute query.
 			if ($stmt->execute())
