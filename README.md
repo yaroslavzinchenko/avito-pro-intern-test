@@ -21,8 +21,8 @@ Welcome to the avito-pro-intern-test application!
 * Body: raw:
 ```
 {
-	"type": "number",
-	"length": 10
+    "type": "number",
+    "length": 10
 }
 ```
 
