@@ -2,10 +2,10 @@
 	class Database
 	{
 		// Database parameters.
-		private $host = 'localhost';
+		private $host = 'db';
 		private $db_name = 'avito-pro-intern-test';
 		private $username = 'root';
-		private $password = '';
+		private $password = 'password';
 		private $conn;
 
 		// Database connect.

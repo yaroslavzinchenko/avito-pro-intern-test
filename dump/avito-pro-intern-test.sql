@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 29 2019 г., 13:58
+-- Время создания: Сен 29 2019 г., 19:36
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.2
 
@@ -55,7 +55,8 @@ INSERT INTO `generations` (`id`, `value`, `type`, `length`) VALUES
 (269, 'xTBgWhnstL', 'string', '10'),
 (270, '3ssdss3', 'custom', '7'),
 (271, 'ssJJ<ss', 'custom', '7'),
-(272, 'dJ8899L', 'custom', '7');
+(272, 'dJ8899L', 'custom', '7'),
+(273, '-6622156123', 'number', '10');
 
 --
 -- Индексы сохранённых таблиц
@@ -75,7 +76,7 @@ ALTER TABLE `generations`
 -- AUTO_INCREMENT для таблицы `generations`
 --
 ALTER TABLE `generations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
