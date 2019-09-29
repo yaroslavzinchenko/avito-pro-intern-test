@@ -17,6 +17,7 @@ Welcome to the avito-pro-intern-test application!
 Для взаимодействия с API я использую приложение Postman.
 Выставляю параметры для генерирования:
 * Метод: POST
+* URI: /api/generate/
 * Headers: Content-Type: application/json
 * Body: raw:
 ```
