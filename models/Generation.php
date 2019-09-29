@@ -22,7 +22,7 @@
 		{
 			if ($this->type == 'number')
 			{
-				require_once('../includes/consider-length.php');
+				require_once('../../includes/consider-length.php');
 
 				$actualNumber = array();
 				array_push($actualNumber, 9);
@@ -39,7 +39,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					require_once('../includes/return-id.php');
+					require_once('../../includes/return-id.php');
 
 					return true;
 				}
@@ -53,7 +53,7 @@
 			// When using alphanumeric type, legth specifies the length in bytes, not the length of the actual string.
 			else if ($this->type == 'alphanumeric')
 			{
-				require_once('../includes/consider-length.php');
+				require_once('../../includes/consider-length.php');
 
 				// Bind data.
 				$stmt->bindParam(':value', bin2hex(random_bytes($this->length)));
@@ -62,7 +62,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					require_once('../includes/return-id.php');
+					require_once('../../includes/return-id.php');
 
 					return true;
 				}
@@ -74,7 +74,7 @@
 			}
 			else if ($this->type == 'guid')
 			{
-				require_once('../includes/not-consider-length.php');
+				require_once('../../includes/not-consider-length.php');
 
 				function getGUID()
 				{
@@ -106,7 +106,7 @@
 				// Execute query.
 				if ($stmt->execute())
 				{
-					require_once('../includes/return-id.php');
+					require_once('../../includes/return-id.php');
 
 					return true;
 				}
@@ -118,7 +118,7 @@
 			}
 			else if ($this->type == 'string')
 			{
-				require_once('../includes/consider-length.php');
+				require_once('../../includes/consider-length.php');
 
 				function generateRandomString($length)
 				{
@@ -139,7 +139,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					require_once('../includes/return-id.php');
+					require_once('../../includes/return-id.php');
 
 					return true;
 				}
@@ -151,7 +151,7 @@
 			}
 			else if ($this->type == 'custom')
 			{
-				require_once('../includes/consider-length.php');
+				require_once('../../includes/consider-length.php');
 
 				function generateRandomString($length)
 				{
@@ -173,7 +173,7 @@
 				if ($stmt->execute())
 				{
 					// Return id.
-					require_once('../includes/return-id.php');
+					require_once('../../includes/return-id.php');
 
 					return true;
 				}

@@ -5,8 +5,8 @@
 	header('Access-Control-Allow-Methods: POST');
 	header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-	include_once '../config/Database.php';
-	include_once '../models/Generation.php';
+	require_once '../../config/Database.php';
+	require_once '../../models/Generation.php';
 
 	// Instantiate DB and Connect.
 	$database = new Database();
