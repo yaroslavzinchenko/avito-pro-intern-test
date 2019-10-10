@@ -13,8 +13,15 @@
 	// Instantiate generation object.
 	$generation = new generation($db);
 
+	// $_GET Superglobal.
 	// Get ID.
-	$generation->id = isset($_GET['id']) ? $_GET['id'] : die();
+	// $generation->id = isset($_GET['id']) ? $_GET['id'] : die();
+
+	// Symfony.
+	require '../../vendor/autoload.php';
+	use Symfony\Component\HttpFoundation\Request;
+	$request = Request::createFromGlobals();
+	$generation->id = $request->query->get('id') !== null ? $request->query->get('id') : die();
 
 	// Retrieve.
 	$generation->retrieve();
