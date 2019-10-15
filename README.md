@@ -85,7 +85,7 @@ Welcome to the avito-pro-intern-test application!
 
 Для получения значения по id, которое вернулось в методе generate, выставляем параметры:
 * Метод: GET
-* URI: localhost:8001/api/retrieve/?id=273
+* URI: localhost:8001/api/retrieve/258
 
 Ответ:
 ```
