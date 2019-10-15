@@ -73,7 +73,7 @@
 			echo $e->getMessage();
 		}
 
-    	return $response;
+    	return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 	});
 
 	// Get specific generation by id.
@@ -107,8 +107,10 @@
 		);
 
 		// Make JSON.
-		print_r(json_encode($generation_arr));
+		// print_r(json_encode($generation_arr));
 
-    	return $response;
+		$response->getBody()->write(json_encode($generation_arr));
+
+    	return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 	});
 ?>
