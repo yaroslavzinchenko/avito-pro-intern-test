@@ -7,7 +7,6 @@
 
 	$app->post('/api/generate/', function (Request $request, Response $response, $args)
 	{
-    	// Headers.
 		header('Access-Control-Allow-Origin: *');
 		header('Content-Type: application/json');
 		header('Access-Control-Allow-Methods: POST');
@@ -48,11 +47,39 @@
     	return $response;
 	});
 
+	// Get all generations.
+	$app->get('/api/retrieve/all', function (Request $request, Response $response, $args)
+	{
+		header('Access-Control-Allow-Origin: *');
+		header('Content-Type: application/json');
+
+		$sql = 'SELECT * FROM generations';
+
+		try
+		{
+			$database = new Database();
+			$db = $database->connect();
+
+			$stmt = $db->query($sql);
+
+			$generations = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+			$db = null;
+
+			print_r(json_encode($generations));
+		}
+		catch (PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+
+    	return $response;
+	});
+
 	// Get specific generation by id.
 
 	$app->get('/api/retrieve/{id}', function (Request $request, Response $response, $args)
 	{
-    	// Headers.
 		header('Access-Control-Allow-Origin: *');
 		header('Content-Type: application/json');
 
@@ -65,13 +92,7 @@
 		// Instantiate generation object.
 		$generation = new generation($db);
 
-		// $_GET Superglobal.
-		// Get ID.
-		// $generation->id = isset($_GET['id']) ? $_GET['id'] : die();
-
-		// Symfony.
 		$generation->id = isset($args['id']) ? $args['id'] : die();
-		// $generation->id = $request->query->get('id') !== null ? $request->query->get('id') : die();
 
 		// Retrieve.
 		$generation->retrieve();

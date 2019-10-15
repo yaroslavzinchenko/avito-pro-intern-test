@@ -4,10 +4,10 @@
 		// Database parameters.
 
 		// For Docker.
-		private $host = 'db';
+		// private $host = 'db';
 
 		// For local development (I use Open Server).
-		// private $host = 'localhost';
+		private $host = 'localhost';
 
 		private $db_name = 'avito-pro-intern-test';
 		private $username = 'root';

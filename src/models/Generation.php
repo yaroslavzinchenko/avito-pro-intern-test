@@ -185,20 +185,6 @@
 			}
 		}
 
-		// Get all generation values.
-		public function retrieveAll()
-		{
-			$query = 'SELECT * FROM ' . $this->table;
-
-			// Prepare statement.
-			$stmt = $this->conn->prepare($query);
-
-			// Execute Query.
-			$stmt->execute();
-
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-		}
-
 		// Get generated value by its id.
 		public function retrieve()
 		{
