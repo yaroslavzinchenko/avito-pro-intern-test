@@ -65,13 +65,13 @@
 			$generations = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 			$db = null;
-
-			print_r(json_encode($generations));
 		}
 		catch (PDOException $e)
 		{
 			echo $e->getMessage();
 		}
+
+		$response->getBody()->write(json_encode($generations));
 
     	return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 	});
@@ -105,9 +105,6 @@
 			'length' => $generation->length,
 			'created_at' => $generation->created_at
 		);
-
-		// Make JSON.
-		// print_r(json_encode($generation_arr));
 
 		$response->getBody()->write(json_encode($generation_arr));
 
