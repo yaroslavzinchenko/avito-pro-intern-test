@@ -97,3 +97,32 @@ Welcome to the avito-pro-intern-test application!
     "created_at": "2019-09-29 18:16:16"
 }
 ```
+
+### Ошибки:
+
+Если при заходе на localhost:8001 видим Internal Server Error, то нужно сделать некоторые манипуляции.
+
+Запускаем Docker:
+```
+docker-compose up -d
+```
+
+Подключаемся к нашему контейнеру:
+```
+docker container exec -it avito-pro-intern-test_www_1 bash
+```
+
+Говорим:
+```
+a2enmod rewrite
+```
+
+Затем
+```
+service apache2 restart
+```
+
+Теперь можно опять запустить контейнер:
+```
+docker-compose up
+```
