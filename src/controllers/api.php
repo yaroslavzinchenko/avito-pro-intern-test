@@ -48,7 +48,7 @@
 	});
 
 	// Get all generations.
-	$app->get('/api/retrieve/all', function (Request $request, Response $response, $args)
+	$app->get('/api/retrieve/all/', function (Request $request, Response $response, $args)
 	{
 		header('Access-Control-Allow-Origin: *');
 		header('Content-Type: application/json');

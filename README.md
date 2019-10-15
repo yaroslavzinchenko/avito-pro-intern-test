@@ -98,6 +98,198 @@ Welcome to the avito-pro-intern-test application!
 }
 ```
 
+Если хотим получить все значения из базы данных, то:
+* Метод: GET
+* URI: localhost:8001/api/retrieve/all/
+
+Ответ:
+```
+[
+    {
+        "id": "258",
+        "value": "87586",
+        "type": "number",
+        "length": "5",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "259",
+        "value": "-47510",
+        "type": "number",
+        "length": "5",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "260",
+        "value": "77498",
+        "type": "number",
+        "length": "5",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "261",
+        "value": "b4eee1",
+        "type": "alphanumeric",
+        "length": "3",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "262",
+        "value": "c501ed",
+        "type": "alphanumeric",
+        "length": "3",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "263",
+        "value": "5c3c0b",
+        "type": "alphanumeric",
+        "length": "3",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "264",
+        "value": "{2CCF7432-A085-D24F-0B37-D55E91E4564F}",
+        "type": "guid",
+        "length": "32",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "265",
+        "value": "{DAE6FA06-2E79-5A5B-487A-420B556EEA87}",
+        "type": "guid",
+        "length": "32",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "266",
+        "value": "{65564046-7942-7746-CB2A-F6CBBFF56763}",
+        "type": "guid",
+        "length": "32",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "267",
+        "value": "KRTJEwEDEb",
+        "type": "string",
+        "length": "10",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "268",
+        "value": "eyuYPJgSti",
+        "type": "string",
+        "length": "10",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "269",
+        "value": "xTBgWhnstL",
+        "type": "string",
+        "length": "10",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "270",
+        "value": "3ssdss3",
+        "type": "custom",
+        "length": "7",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "271",
+        "value": "ssJJ<ss",
+        "type": "custom",
+        "length": "7",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "272",
+        "value": "dJ8899L",
+        "type": "custom",
+        "length": "7",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "273",
+        "value": "-6622156123",
+        "type": "number",
+        "length": "10",
+        "created_at": "2019-10-14 20:35:16"
+    },
+    {
+        "id": "274",
+        "value": "9355701925",
+        "type": "number",
+        "length": "10",
+        "created_at": "2019-10-14 21:19:22"
+    },
+    {
+        "id": "275",
+        "value": "-8943776322",
+        "type": "number",
+        "length": "10",
+        "created_at": "2019-10-14 21:20:14"
+    },
+    {
+        "id": "276",
+        "value": "-3",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:20:21"
+    },
+    {
+        "id": "277",
+        "value": "9",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:21:17"
+    },
+    {
+        "id": "278",
+        "value": "-5",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:21:27"
+    },
+    {
+        "id": "279",
+        "value": "5",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:21:39"
+    },
+    {
+        "id": "280",
+        "value": "9",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:24:09"
+    },
+    {
+        "id": "281",
+        "value": "-9",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:24:12"
+    },
+    {
+        "id": "282",
+        "value": "4",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:49:38"
+    },
+    {
+        "id": "283",
+        "value": "7",
+        "type": "number",
+        "length": "1",
+        "created_at": "2019-10-14 21:49:40"
+    }
+]
+```
+
 ### Ошибки:
 
 Если при заходе на localhost:8001 видим Internal Server Error, то нужно сделать некоторые манипуляции.
