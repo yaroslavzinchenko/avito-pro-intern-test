@@ -30,23 +30,23 @@ PHP сервис представляет собой JSON API для генер�
 
 ### Сборка:
 Переходим в директорию, где будем собирать, например
-```
+```shell
 cd DIRECTORY_NAME
 ```
 
 Клонируем
 
-```
+```shell
 git clone https://github.com/yaroslavzinchenko/avito-pro-intern-test.git
 ```
 
 Идём в директорию avito-pro-intern-test
-```
+```shell
 cd avito-pro-intern-test
 ```
 
 Запускаем
-```
+```shell
 docker-compose up
 ```
 
@@ -71,7 +71,7 @@ Welcome to the avito-pro-intern-test application!
 * URI: localhost:8001/api/generate/
 * Headers: Content-Type: application/json
 * Body: raw:
-```
+```json
 {
     "type": "number",
     "length": 10
@@ -79,7 +79,7 @@ Welcome to the avito-pro-intern-test application!
 ```
 
 Ответ:
-```
+```json
 {
     "id": "273",
     "message": "Value Generated"
@@ -91,7 +91,7 @@ Welcome to the avito-pro-intern-test application!
 * URI: localhost:8001/api/retrieve/273
 
 Ответ:
-```
+```json
 {
     "id": "273",
     "value": "-6622156123",
@@ -110,26 +110,26 @@ Welcome to the avito-pro-intern-test application!
 Если при заходе на localhost:8001 видим Internal Server Error, то нужно сделать некоторые манипуляции.
 
 Запускаем Docker:
-```
+```shell
 docker-compose up -d
 ```
 
 Подключаемся к нашему контейнеру:
-```
+```shell
 docker container exec -it avito-pro-intern-test_www_1 bash
 ```
 
 Говорим:
-```
+```shell
 a2enmod rewrite
 ```
 
 Затем
-```
+```shell
 service apache2 restart
 ```
 
 Теперь можно опять запустить контейнер:
-```
+```shell
 docker-compose up
 ```
